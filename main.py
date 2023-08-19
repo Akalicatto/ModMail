@@ -1,6 +1,6 @@
 
 
-version='ALPHA 0.0'
+version='BETA 1.0'
 import asyncio
 import os
 
@@ -12,7 +12,6 @@ import pymongo
 import time
 from discord.ext.pages import Page, Paginator
 import datetime
-import uuid
 from colorama import Fore
 from discord.ext.commands import has_any_role, has_guild_permissions, has_guild_permissions, has_role, MissingPermissions
 from discord.utils import get
@@ -1279,13 +1278,13 @@ async def close(ctx: discord.ApplicationContext):
             
             transcript = ""
             if isinstance(ctx.channel, discord.TextChannel):
+                    transcript + '---------------- start -----------------'
                     async for message in ctx.channel.history(limit=None):
                         if message.embeds:
                             embed = message.embeds[0]
                             author_name = embed.author.name if embed.author else "Unknown"
                             description = embed.description if embed.description else "No description."
                             transcript += f"[{author_name}] | {description}\n"
-                    transcript + '---------------- start -----------------'
 
             with open(f"transcripts/transcript-{ctx.channel_id}-{numb}.txt", "w", encoding="utf-8") as file:
                 file.write(transcript)
@@ -1481,6 +1480,7 @@ async def contact(ctx: discord.ApplicationContext, user: discord.User):
                             timestamp=datetime.datetime.utcnow()
                         ).set_author(name=bot.user.name, icon_url=bot.user.avatar.url).set_footer(text='This message was NOT delivered')
                         await c.send(embed=embed3)
+                        await ctx.respond(embed=create_standart_embed('User contacted successfully.', 'Success'))
                         
         
 @bot.command()
