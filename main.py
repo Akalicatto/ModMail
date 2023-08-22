@@ -165,7 +165,7 @@ class blockappeal(discord.ui.Modal):
         
 
         self.add_item(discord.ui.InputText(style=discord.InputTextStyle.paragraph, label='Why did you get blocked?'))
-        self.add_item(discord.ui.InputText(style=discord.InputTextStyle.paragraph, label='Will you do it again?'))
+        self.add_item(discord.ui.InputText(style=discord.InputTextStyle.paragraph, label='Why should you be unblocked?'))
         self.add_item(discord.ui.InputText(style=discord.InputTextStyle.paragraph, label='Do you want to add something else?', required=False))
         
     async def callback(self, interaction) -> None:
