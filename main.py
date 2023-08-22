@@ -404,7 +404,8 @@ async def setup(ctx: discord.ApplicationContext):
                         await category.set_permissions(ctx.guild.default_role, read_messages=False)
                         
                         c1 = await category.create_text_channel('modmail-logs')
-                        config.insert_one({'name': "modmail_category_id", 'value': c1.id})
+                        config.insert_one({'name': "modmail_category_id", 'value': category.id})
+                        config.insert_one({'name': 'transcript_log', 'value': c1.id})
                         await c1.send(embed=create_standart_embed('<:akai_modmail_logs:1134740155006193664> This is the log channel for the modmail.\nYou may change it with the /config edit command.', 'Log channel'))
                         await ctx.respond(ctx.author.mention, embed=create_standart_embed('<:akai_modmail_Correct:1134522427792183410> Config done. You may config other aspects in the config commands.', 'Completed'))
                     except Exception as e:
@@ -414,6 +415,7 @@ async def setup(ctx: discord.ApplicationContext):
         
         else:
             await ctx.respond(embed=create_standart_embed('<:akai_modmail_exclamation:1134739423611858975> The bot already was setup or you already started to config it in the config commands.', title='Warning'))
+    
     
 configg = bot.create_group('config')
 
