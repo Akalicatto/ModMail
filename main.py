@@ -189,6 +189,10 @@ class blockappeal(discord.ui.Modal):
         await channel.send(
             embed=embed
         )
+        embds = []
+        if transscriptsdb.find_one({'userid': interaction.user.id}) is not None:
+            for transcript in transscriptsdb.find_one({'userid': interaction.user.id}):
+                embds.append(create_standart_embed(transcript['transcript'], 'Transcript'))
 
 class AppealBlockButton(discord.ui.View):
     @discord.ui.button(
