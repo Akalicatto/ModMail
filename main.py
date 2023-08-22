@@ -736,8 +736,8 @@ async def on_message(message: discord.Message):
                         embeo2.set_footer(text=guild.name, icon_url=guild.icon.url)
                         
                         
-                        g = guild
-                        member = g.get_member(message.author.id)
+                        g = bot.get_guild(int(os.environ['staffguild']))
+                        member = guild.get_member(message.author.id)
                         roles_as_text = ''
                         n = 1
                         for role in member.roles:
@@ -815,7 +815,7 @@ async def on_message(message: discord.Message):
                         await bot.get_channel(open_ticket['channelid']).send(embed=embed)
                         for image in message.attachments:
                             await bot.get_channel(open_ticket['channelid']).send(embed = discord.Embed(url=image.url, title='Attachment', color=config.find_one({'name': 'support_color'})['value'], timestamp=datetime.datetime.utcnow()).set_author(name=message.author.name, icon_url=message.author.avatar.url).set_footer(text='Response').set_image(url=image.url))
-                        
+
 supportg = bot.create_group('support')
 def top_role(userid: int):
     guild = bot.get_guild(int(os.environ['guild']))
