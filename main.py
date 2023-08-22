@@ -497,7 +497,7 @@ async def view(ctx: discord.ApplicationContext):
                 'values': 'category id (integer)'
             },
             "select_department": {
-                'descriprtion': 'Should the users be able to select the department they want to get support in?',
+                'description': 'Should the users be able to select the department they want to get support in?',
                 'values': 'True or False'
             }
         }
