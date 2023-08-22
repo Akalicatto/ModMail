@@ -197,7 +197,7 @@ class AppealBlockButton(discord.ui.View):
         style=discord.ButtonStyle.gray,
     )
     async def callback(self, button, interaction: discord.Interaction):
-        self.disable_all_items()
+        self.stop()
         await interaction.response.send_modal(blockappeal())
         
 class MyView(discord.ui.View):
